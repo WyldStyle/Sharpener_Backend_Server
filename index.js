@@ -1,4 +1,7 @@
 import app from "./src/app.js"
-app.listen(3001,()=>{
+import dbConnection from "./src/database_connection.js";
+
+app.listen(3001, async ()=>{
+  await dbConnection; 
   console.log('server listening on port 3001');
 })

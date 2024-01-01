@@ -1,4 +1,6 @@
-import express from "express"
+import express from "express";
+import dbConnection from "./database_connection.js";
+
 const app = express()
 app.get("/", (req, res) => {
   const data = {

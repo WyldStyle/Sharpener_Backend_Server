@@ -1,26 +1,35 @@
+import { MongoClient } from 'mongodb';
+// or as an es module:
+// import { MongoClient } from 'mongodb'
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://WyldCode:Xoxo1@cluster1.of8zcsx.mongodb.net/?retryWrites=true&w=majority";
+// Connection URL
+const url = 'mongodb+srv://wyldStyle:wyldStyle_123@cluster0.cmeq8hn.mongodb.net/?retryWrites=true&w=majority';
+const client = new MongoClient(url);
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+// Database Name
+const dbName = 'wyldDb';
 
-async function run() {
+async function main() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
+    // Use connect method to connect to the server
     await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    console.log('Connected successfully to server');
+    const db = client.db(dbName);
+    // const collection = db.collection('documents');
+    
+    // the following code examples can be pasted here...
+    
+    return db;
+  } catch(error) {
+    console.log(error.message, error.stack);
   }
 }
-run().catch(console.dir);
+
+const dbConnection = main();
+console.log("DbConnection ---> ", dbConnection);
+export default dbConnection;
+
+// main()
+//   .then(console.log)
+//   .catch(console.error)
+//   .finally(() => client.close());
