@@ -1,7 +1,11 @@
 import express from "express";
-import dbConnection from "./database_connection.js";
+import expenseRouter from "./expTracker/expTrackerRoutes.js";
 
-const app = express()
+const app = express();
+app.use(express.json());
+
+app.use('/exp', expenseRouter);
+
 app.get("/", (req, res) => {
   const data = {
     key: "Hello world"
