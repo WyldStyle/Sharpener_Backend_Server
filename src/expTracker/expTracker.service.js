@@ -45,4 +45,20 @@ const delEntryAtId = async (id) => {
     database.close();
   }
 }
-export { createNewExpEntry, delEntryAtId }
+
+const findAllExpEntries = async () => {
+  try {
+    console.log("finding --->");
+    const db = await database.connect();
+    const collection = db.collection("expenses");
+    const result = collection.find();
+    console.log("found --->", result);
+    return result;
+  } catch(error) {
+    console.log(error.message);
+  } finally {
+    database.close();
+  }
+}
+
+export { createNewExpEntry, delEntryAtId, findAllExpEntries };

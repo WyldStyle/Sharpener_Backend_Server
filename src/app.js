@@ -31,6 +31,4 @@ app.get("/", (req, res) => {
 //   res.status(200).json({ message: `DELETE request successful for item with ID ${itemId}` });
 // });
 
-app.post;
-app.delete;
 export default app
