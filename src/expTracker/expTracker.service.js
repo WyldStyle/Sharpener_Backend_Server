@@ -1,4 +1,5 @@
 import database from "../database_connection.js";
+import { ObjectId } from "mongodb";
 
 
 const createNewExpEntry = async (expData) => {
@@ -26,7 +27,7 @@ const delEntryAtId = async (id) => {
     const collection = db.collection('expenses');
 
     // Delete the document based on the provided ID
-    const result = await collection.deleteOne({ _id: id });
+    const result = await collection.deleteMany({ _id: new ObjectId(id) });
 
     console.log('delService', result);
     return result;
