@@ -51,7 +51,7 @@ const findAllExpEntries = async () => {
     console.log("finding --->");
     const db = await database.connect();
     const collection = db.collection("expenses");
-    const result = collection.find();
+    const result = await collection.find().toArray();
     console.log("found --->", result);
     return result;
   } catch(error) {
