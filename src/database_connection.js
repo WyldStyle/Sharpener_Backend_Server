@@ -7,6 +7,7 @@ class Database {
     if (!Database.instance) {
       this.client = new MongoClient(url)
     }
+    console.log('hey in the Database',this)
     this.connect();
     Database.instance = this;
   }
@@ -19,6 +20,7 @@ class Database {
       return this.database;
     } catch(error) {
       console.log("Error while connecting to mongodb --->", error.stack);
+
       throw error;
     }
   }

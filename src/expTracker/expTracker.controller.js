@@ -1,4 +1,4 @@
-import { createNewExpEntry } from "./expTracker.service.js"
+import { createNewExpEntry, delEntryAtId } from "./expTracker.service.js"
 import ResponseHandler from "../responseHandler.js";
 
 export const newExpEntry = (req, res) => {
@@ -11,3 +11,15 @@ export const newExpEntry = (req, res) => {
     ResponseHandler.sendFailureResponse(res, error.message, null, 500);
   }
 }
+
+export const delEntry = (req, res) =>{
+  try {
+    console.log('delController',req);
+    const resultDel = delEntryAtId(req.params.id)
+    ResponseHandler.sendSuccessResponse(res, resultDel, 200)
+  } catch (error) {
+    console.log(error.stack);
+  }
+}
+
+
