@@ -20,7 +20,6 @@ class Database {
       return this.database;
     } catch(error) {
       console.log("Error while connecting to mongodb --->", error.stack);
-
       throw error;
     }
   }

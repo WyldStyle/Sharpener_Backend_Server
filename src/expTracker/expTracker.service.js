@@ -27,7 +27,7 @@ const delEntryAtId = async (id) => {
     const collection = db.collection('expenses');
 
     // Delete the document based on the provided ID
-    const result = await collection.deleteMany({ _id: new ObjectId(id) });
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
 
     console.log('delService', result);
     return result;
@@ -61,5 +61,15 @@ const findAllExpEntries = async () => {
     database.close();
   }
 }
+const updateEntryAtId = async(id, updatedExpData)=>{
+  try {
+    const db = await database.connect();
+    const collection = db.collection("expenses");
+    const result = await collection.updateOne({_id: new ObjectId(id)},{$set:updatedExpData })
+  } catch (error) {
+    console.log(error);
+    
+  }
+}
 
-export { createNewExpEntry, delEntryAtId, findAllExpEntries };
+export { createNewExpEntry, delEntryAtId, findAllExpEntries, updateEntryAtId };

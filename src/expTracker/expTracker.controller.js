@@ -1,40 +1,35 @@
-import {
-  createNewExpEntry,
-  delEntryAtId,
-  findAllExpEntries
-} from "./expTracker.service.js"
+import { createNewExpEntry, delEntryAtId , updateEntryAtId} from "./expTracker.service.js"
 import ResponseHandler from "../responseHandler.js";
 
-export const newExpEntry = async (req, res) => {
+export const newExpEntry = (req, res) => {
   try {
     const expenseData = req.body;
-    const result = await createNewExpEntry(expenseData);
+    console.log('controller1');
+    const result = createNewExpEntry(expenseData);
     ResponseHandler.sendSuccessResponse(res, result, 200);
-  } catch(error) {
+  } catch (error) {
     console.error(error.stack);
     ResponseHandler.sendFailureResponse(res, error.message, null, 500);
   }
 }
-
-export const delEntry = async (req, res) =>{
+export const delExpEntry = (req, res) => {
   try {
-    console.log('delController',req);
-    const resultDel = await delEntryAtId(req.params.id)
-    ResponseHandler.sendSuccessResponse(res, resultDel, 200)
+    // console.log(req.params);
+    const result = delEntryAtId(id);
+    ResponseHandler.sendSuccessResponse(res, result, 300)
   } catch (error) {
-    console.log(error.stack);
-  }
-}
-
-export const findAll = async (req, res) => {
-  try {
-    console.log('findAll Controller...');
-    const findRes = await findAllExpEntries();
-    ResponseHandler.sendSuccessResponse(res, findRes, 200);
-  } catch(error) {
     console.log(error.stack);
     ResponseHandler.sendFailureResponse(res, error.message, null, 500);
   }
 }
 
-
+export const updateExpEntry = (req, res) =>{
+  try {
+    const updatedExpData = req.body;
+    const result  = updateExpEntry(id, updatedExpData);
+    ResponseHandler.sendSuccessResponse(res, result,200)
+  } catch (error) {
+    console.log(error.stack);
+    ResponseHandler.sendSuccessResponse(res, error.message, null, 500)
+  }
+}
