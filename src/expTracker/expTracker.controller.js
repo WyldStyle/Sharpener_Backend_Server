@@ -1,4 +1,9 @@
-import { createNewExpEntry, delEntryAtId , updateEntryAtId} from "./expTracker.service.js"
+import {
+  createNewExpEntry,
+  delEntryAtId,
+  updateEntryAtId,
+  findAllExpEntries
+} from "./expTracker.service.js"
 import ResponseHandler from "../responseHandler.js";
 
 export const newExpEntry = (req, res) => {
