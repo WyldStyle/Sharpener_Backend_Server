@@ -9,7 +9,6 @@ import ResponseHandler from "../responseHandler.js";
 export const newExpEntry = (req, res) => {
   try {
     const expenseData = req.body;
-    console.log('controller1');
     const result = createNewExpEntry(expenseData);
     ResponseHandler.sendSuccessResponse(res, result, 200);
   } catch (error) {
@@ -19,7 +18,7 @@ export const newExpEntry = (req, res) => {
 }
 export const delExpEntry = (req, res) => {
   try {
-    // console.log(req.params);
+    const id = req.params.id;
     const result = delEntryAtId(id);
     ResponseHandler.sendSuccessResponse(res, result, 300)
   } catch (error) {
@@ -31,6 +30,7 @@ export const delExpEntry = (req, res) => {
 export const updateExpEntry = (req, res) =>{
   try {
     const updatedExpData = req.body;
+    const id = req.params.id;
     const result  = updateEntryAtId(id, updatedExpData);
     ResponseHandler.sendSuccessResponse(res, result,200)
   } catch (error) {

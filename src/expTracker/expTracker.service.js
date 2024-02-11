@@ -66,9 +66,11 @@ const updateEntryAtId = async(id, updatedExpData)=>{
     const db = await database.connect();
     const collection = db.collection("expenses");
     const result = await collection.updateOne({_id: new ObjectId(id)},{$set:updatedExpData })
+    return result;
   } catch (error) {
     console.log(error);
-    
+  } finally {
+    database.close();
   }
 }
 
