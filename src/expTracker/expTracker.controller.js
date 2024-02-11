@@ -6,20 +6,20 @@ import {
 } from "./expTracker.service.js"
 import ResponseHandler from "../responseHandler.js";
 
-export const newExpEntry = (req, res) => {
+export const newExpEntry = async (req, res) => {
   try {
     const expenseData = req.body;
-    const result = createNewExpEntry(expenseData);
+    const result = await createNewExpEntry(expenseData);
     ResponseHandler.sendSuccessResponse(res, result, 200);
   } catch (error) {
     console.error(error.stack);
     ResponseHandler.sendFailureResponse(res, error.message, null, 500);
   }
 }
-export const delExpEntry = (req, res) => {
+export const delExpEntry = async (req, res) => {
   try {
     const id = req.params.id;
-    const result = delEntryAtId(id);
+    const result = await delEntryAtId(id);
     ResponseHandler.sendSuccessResponse(res, result, 300)
   } catch (error) {
     console.log(error.stack);
@@ -27,11 +27,11 @@ export const delExpEntry = (req, res) => {
   }
 }
 
-export const updateExpEntry = (req, res) =>{
+export const updateExpEntry = async (req, res) =>{
   try {
     const updatedExpData = req.body;
     const id = req.params.id;
-    const result  = updateEntryAtId(id, updatedExpData);
+    const result  = await updateEntryAtId(id, updatedExpData);
     ResponseHandler.sendSuccessResponse(res, result,200)
   } catch (error) {
     console.log(error.stack);
