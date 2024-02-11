@@ -33,3 +33,14 @@ export const updateExpEntry = (req, res) =>{
     ResponseHandler.sendSuccessResponse(res, error.message, null, 500)
   }
 }
+
+export const findAll = async (req, res) => {
+  try {
+    console.log('findAll Controller...');
+    const findRes = await findAllExpEntries();
+    ResponseHandler.sendSuccessResponse(res, findRes, 200);
+  } catch(error) {
+    console.log(error.stack);
+    ResponseHandler.sendFailureResponse(res, error.message, null, 500);
+  }
+}

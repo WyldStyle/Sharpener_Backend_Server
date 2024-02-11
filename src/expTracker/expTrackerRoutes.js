@@ -6,7 +6,7 @@ console.log('router is', router);
 
 router.post('/newExpEntry', ExpenseController.newExpEntry);
 router.delete(`/delExpEntry/:id`,ExpenseController.delExpEntry)
-// router.get('/findAll', ExpenseController.findAll);
-router.update('/updateExpEntry/:id',ExpenseController.updateExpEntry)
+router.get('/findAll', ExpenseController.findAll);
+router.put('/updateExpEntry/:id',ExpenseController.updateExpEntry)
 
 export default router;
