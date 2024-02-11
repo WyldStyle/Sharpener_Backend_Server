@@ -26,7 +26,7 @@ export const delExpEntry = (req, res) => {
 export const updateExpEntry = (req, res) =>{
   try {
     const updatedExpData = req.body;
-    const result  = updateExpEntry(id, updatedExpData);
+    const result  = updateEntryAtId(id, updatedExpData);
     ResponseHandler.sendSuccessResponse(res, result,200)
   } catch (error) {
     console.log(error.stack);
